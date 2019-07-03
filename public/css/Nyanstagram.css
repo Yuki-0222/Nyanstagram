@@ -1,0 +1,16 @@
+.background {
+    position: relative;
+    height: 800px;
+    background: url(../images/top.jpg) no-repeat center center;
+    background-size: cover;
+    margin-bottom: 0;
+}
+
+.description {
+    color: #ffffff;
+    padding-top: 50px;
+}
+
+.buttons {
+    padding-top: 200px;
+}
