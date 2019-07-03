@@ -23,11 +23,13 @@
                     </div>
     
                     <div class="form-group">
-                        {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'パスワード(再入力)']) !!}
+                        {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'パスワード(確認用)']) !!}
                     </div>
     
                     {!! Form::submit('新規登録', ['class' => 'btn btn-dark btn-block']) !!}
                 {!! Form::close() !!}
+                
+                <p class="mt-2">アカウントをお持ちの方はこちらから {!! link_to_route('login', 'ログイン') !!}</p>
             </div>
         </div>
     </div>

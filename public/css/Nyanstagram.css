@@ -3,6 +3,7 @@
     height: 800px;
     background: url(../images/top.jpg) no-repeat center center;
     background-size: cover;
+    opacity: 1;
     margin-bottom: 0;
 }
 
@@ -13,4 +14,9 @@
 
 .buttons {
     padding-top: 200px;
+}
+
+.error-message {
+    margin-bottom: 0;
+    border-radius: 0;
 }
