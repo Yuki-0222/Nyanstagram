@@ -12,7 +12,7 @@
                 <h3>皆様のお気に入りの猫画像をアップロードしてください。</h3>
     
                 <div class="buttons">
-                    <a class="btn btn-dark d-block d-md-inline-block mb-2 pr-4 pl-4 mb-md-0 btn-lg" href="/" role="button">会員登録</a>
+                    {!! link_to_route('signup.get', '新規登録', [], ['class' => 'btn btn-lg btn-dark pr-4 pl-4 d-block d-md-inline-block mb-2']) !!}
                     <a class="btn btn-dark d-block d-md-inline-block mb-2 pr-4 pl-4 mb-md-0 btn-lg" href="/" role="button">ログイン</a>
                 </div>
             </div>
