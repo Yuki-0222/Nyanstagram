@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="background description">
+    <div class="background_before_login description">
         <div class="text-center mb-4">
             <h1>ログイン</h1>
         </div>

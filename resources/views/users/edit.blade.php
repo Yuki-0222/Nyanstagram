@@ -12,12 +12,7 @@
                 @endif
                 <h6 class="mt-4 mx-auto" style="width: 130px;">プロフィール画像</h4>
             </aside>
-            
-            <aside class="col-sm-1">
-                
-            </aside>
-            
-            <aside class="col-sm-7 mt-4">
+            <aside class="col-sm-7 offset-1 mt-4">
                 {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put', 'files' => true]) !!}
             
                     <div class="form-group">

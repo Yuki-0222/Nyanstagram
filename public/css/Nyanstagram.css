@@ -1,16 +1,22 @@
-.background {
+.background_before_login {
     position: relative;
     height: 800px;
     background: url(../images/top.jpg) no-repeat center center;
     background-size: cover;
-    opacity: 1;
     margin-bottom: 0;
+}
+
+.background_after_login {
+    background-color: #fafafa;
+    background-size: cover;
+    
 }
 
 .description {
     color: #ffffff;
     padding-top: 50px;
 }
+
 
 .buttons {
     padding-top: 200px;
@@ -23,4 +29,13 @@
 
 .center {
     margin-top: 50%;
+}
+
+.avater {
+    height: 50px;
+    Width: 50px;
+}
+
+.icon {
+    font-size: 20px;
 }

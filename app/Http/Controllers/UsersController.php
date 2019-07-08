@@ -41,6 +41,7 @@ class UsersController extends Controller
     {
         $this->validate($request, [
             'profile' => 'required|max:191',
+            'user_image' => 'file|image|mimes:jpeg,png,jpg',
         ]);
         
         $user = User::find($id);
@@ -51,9 +52,10 @@ class UsersController extends Controller
         
         // 画像ファイルを保存
         $file = $request->file('user_image');
-        //Storage::put('public/icons', $file);
-        $filePath = $file->store('public/icons');
-        $user->user_image = str_replace('public/', '', $filePath);
+        if ($file) {
+            $filePath = $file->store('public/icons');
+            $user->user_image = str_replace('public/', '', $filePath);
+        }
         $user->save();
 
         return view('users.show', [

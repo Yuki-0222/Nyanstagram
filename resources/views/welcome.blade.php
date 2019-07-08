@@ -2,28 +2,25 @@
 
 @section('content')
     @if (Auth::check())
-        <div class="container mt-4">
-            <div class="row align-item-center">
-                <div class="col-3">
-                    @if(Auth::user()->user_image == null)
-                        <img class="rounded-circle img-fluid img-thumbnail" src="/storage/no_image.png" alt="">
-                    @else
-                        <img class="rounded-circle img-fluid" src="/storage/{{Auth::user()->user_image}}" alt="">
-                    @endif
-                </div>
-                
-                <div class="col-1">
-                    
-                </div>
-                
-                <div class="col-8">
-                    <h2 class="m-4">{{Auth::user()->name }}</h3>
-                    <button type="button" class="btn btn-dark btn-block">投稿する</button>
+        <div class="background_after_login">
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-3">
+                        @if(Auth::user()->user_image == null)
+                            <img class="rounded-circle img-fluid" src="/storage/no_image.png">
+                        @else
+                            <img class="rounded-circle img-fluid" src="/storage/{{Auth::user()->user_image}}">
+                        @endif
+                    </div>
+                    <div class="col-8 offset-1">
+                        <h2 class="m-4">{{Auth::user()->name }}</h3>
+                        <button type="button" class="btn btn-dark btn-block">投稿する</button>
+                    </div>
                 </div>
             </div>
         </div>
-    @else
-        <div class="background">
+     @else
+        <div class="background_before_login">
             <div class="container description">
                 <h1>Nyanstagram</h1>
                 <br/>

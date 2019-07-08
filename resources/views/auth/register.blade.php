@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="background description">
+    <div class="background_before_login description">
         <div class="text-center mb-4">
             <h1>新規登録</h1>
         </div>
