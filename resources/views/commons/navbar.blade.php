@@ -11,16 +11,9 @@
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
-    
-                <li class="nav-item"><a href="#" class="nav-link">Users</a></li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-item"><a href="#">My profile</a></li>
-                        <li class="dropdown-divider"></li>
-                        <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
-                    </ul>
-                </li>
+                <li class="nav-item">{!! link_to_route('users.show', '自分のアカウント', ['id' => Auth::id()], ['class' => 'nav-link']) !!}</li>
+                <li class="nav-item">{!! link_to_route('users.index', 'ユーザーを探す', [], ['class' => 'nav-link']) !!}</li>
+                <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト', [], ['class' => 'nav-link']) !!}</li>
             </ul>
         </div>
         @else
