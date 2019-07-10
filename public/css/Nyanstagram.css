@@ -7,9 +7,8 @@
 }
 
 .background_after_login {
-    background-color: #fafafa;
+    background-color: #d3d3d3;
     background-size: cover;
-    
 }
 
 .description {
@@ -36,6 +35,30 @@
     Width: 50px;
 }
 
-.icon {
-    font-size: 20px;
+.icon-div {
+    margin: 0 auto 1.3rem;
+    width: 200px;
+    height: 200px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+.icon-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.row-eq-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-roll {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
 }

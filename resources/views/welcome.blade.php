@@ -3,21 +3,24 @@
 @section('content')
     @if (Auth::check())
         <div class="background_after_login">
-            <div class="container pt-4">
+            <div class="container p-4">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-md-3 offset-md-1">
                         @if(Auth::user()->user_image == null)
                             <img class="rounded-circle img-fluid" src="/storage/no_image.png">
                         @else
-                            <img class="rounded-circle img-fluid" src="/storage/{{Auth::user()->user_image}}">
+                            <img class="rounded-circle img-fluid icon-image" src="/storage/{{Auth::user()->user_image}}">
                         @endif
                     </div>
-                    <div class="col-8 offset-1">
-                        <h2 class="m-4">{{Auth::user()->name }}</h3>
-                        <button type="button" class="btn btn-dark btn-block">投稿する</button>
+                    <div class="col-md-7 offset-md-1">
+                        <h2>{{Auth::user()->name}}</h2>
+                        {!! link_to_route('photos.create', '投稿する', [], ['class' => 'btn btn-dark btn-block mt-4']) !!}
                     </div>
                 </div>
             </div>
+            @if (count($photos) > 0)
+                @include('photos.photos', ['photos' => $photos])
+            @endif
         </div>
      @else
         <div class="background_before_login">
