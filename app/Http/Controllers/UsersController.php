@@ -20,13 +20,18 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-
-        return view('users.show', [
+        $photos = $user->photos()->orderBy('created_at', 'desc')->paginate(12);
+        
+        $data = [
             'user' => $user,
-        ]);
+            'photos' => $photos,
+        ];
+        
+        $data += $this->counts($user);
+
+        return view('users.show', $data);
     }
     
-    // getでmessages/id/editにアクセスされた場合の「更新画面表示」
     public function edit($id)
     {
         $user = User::find($id);
@@ -36,7 +41,6 @@ class UsersController extends Controller
         ]);
     }
     
-    // putまたはpatchでmessages/idにアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -57,9 +61,43 @@ class UsersController extends Controller
             $user->user_image = str_replace('public/', '', $filePath);
         }
         $user->save();
+        
+        // ユーザーページに戻る際のphotos情報を取得
+        $photos = $user->photos()->orderBy('created_at', 'desc')->paginate(12);
 
         return view('users.show', [
             'user' => $user,
+            'photos' => $photos,
         ]);
+    }
+    
+    public function followings($id)
+    {
+        $user = User::find($id);
+        $followings = $user->followings()->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'users' => $followings,
+        ];
+
+        $data += $this->counts($user);
+
+        return view('users.followings', $data);
+    }
+
+    public function followers($id)
+    {
+        $user = User::find($id);
+        $followers = $user->followers()->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'users' => $followers,
+        ];
+
+        $data += $this->counts($user);
+
+        return view('users.followers', $data);
     }
 }

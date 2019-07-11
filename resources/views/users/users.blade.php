@@ -1,8 +1,11 @@
 @if (count($users) > 0)
-    <div class="container mt-4">
+    <div class="container pt-4">
         <ul class="list-unstyled">
             @foreach ($users as $user)
-                <li class="media">
+                <li class="media mt-4">
+                    <div style="width: 100px;">
+                        @include('users.user_icon', ['user' => $user])
+                    </div>
                     <img class="mr-2 rounded" src="" alt="">
                     <div class="media-body">
                         <div>

@@ -40,7 +40,7 @@ class PhotosController extends Controller
     {
         // バリデーション↓↓
         $this->validate($request, [
-            'comment' => 'required|max:191',
+            'comment' => 'required|max:50',
             'image' => 'required|file|image|mimes:jpeg,png,jpg',
         ]);
     
@@ -71,6 +71,12 @@ class PhotosController extends Controller
     
     public function destroy($id)
     {
-        //
+        $photo = \App\Photo::find($id);
+
+        if (\Auth::id() === $photo->user_id) {
+            $photo->delete();
+        }
+
+        return back();
     }
 }

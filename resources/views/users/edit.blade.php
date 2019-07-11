@@ -10,7 +10,7 @@
                 @else
                     <img class="rounded-circle img-fluid" src="/storage/{{$user->user_image}}" alt="">
                 @endif
-                <h6 class="mt-4 mx-auto" style="width: 130px;">プロフィール画像</h4>
+                <h6 class="mt-4 mx-auto" style="width: 180px;">現在のプロフィール画像</h4>
             </aside>
             <aside class="col-sm-8 mt-4">
                 {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put', 'files' => true]) !!}

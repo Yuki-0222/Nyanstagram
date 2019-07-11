@@ -6,11 +6,7 @@
             <div class="container p-4">
                 <div class="row">
                     <div class="col-md-3 offset-md-1">
-                        @if(Auth::user()->user_image == null)
-                            <img class="rounded-circle img-fluid" src="/storage/no_image.png">
-                        @else
-                            <img class="rounded-circle img-fluid icon-image" src="/storage/{{Auth::user()->user_image}}">
-                        @endif
+                        @include('users.user_icon', ['user' => $user])
                     </div>
                     <div class="col-md-7 offset-md-1">
                         <h2>{{Auth::user()->name}}</h2>

@@ -1,13 +1,13 @@
 .background_before_login {
     position: relative;
-    height: 800px;
+    height: 100vh;
     background: url(../images/top.jpg) no-repeat center center;
     background-size: cover;
     margin-bottom: 0;
 }
 
 .background_after_login {
-    background-color: #d3d3d3;
+    background-color: #fffafa;
     background-size: cover;
 }
 
@@ -47,8 +47,6 @@
 }
 
 .icon-image {
-    width: 200px;
-    height: 200px;
     object-fit: cover;
 }
 
