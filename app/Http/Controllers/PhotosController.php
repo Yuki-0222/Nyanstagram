@@ -16,7 +16,7 @@ class PhotosController extends Controller
         // ログインユーザーの確認↓↓
         if (\Auth::check()) {
             $user = \Auth::user();
-            $photos = $user->photos()->orderBy('created_at', 'desc')->paginate(12);
+            $photos = $user->feed_photos()->orderBy('created_at', 'desc')->paginate(12);
         
             $data = [
                 'user' => $user,
