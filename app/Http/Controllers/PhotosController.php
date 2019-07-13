@@ -27,6 +27,10 @@ class PhotosController extends Controller
         return view('welcome', $data);
     }
     
+    public function show($id)
+    {
+       // $user = Photo::find($id);
+    }
     
     public function create()
     {
@@ -35,13 +39,12 @@ class PhotosController extends Controller
         return view('photos.create', ['photo' => $photo,]);
     }
     
-    
     public function store(Request $request)
     {
         // バリデーション↓↓
         $this->validate($request, [
             'comment' => 'required|max:50',
-            'image' => 'required|file|image|mimes:jpeg,png,jpg',
+            'image' => 'required|file|image',
         ]);
     
         // データの受け取り処理↓↓
@@ -67,7 +70,6 @@ class PhotosController extends Controller
         
         return view('welcome', $data);
     }
-    
     
     public function destroy($id)
     {

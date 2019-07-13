@@ -79,5 +79,45 @@ class User extends Authenticatable
         $follow_user_ids[] = $this->id;
         return Photo::whereIn('user_id', $follow_user_ids);
     }
+    
+    public function likes()
+    {
+        return $this->belongsToMany(Photo::class, 'likes', 'user_id', 'photo_id')->withTimestamps();
+    }
+    
+    public function like($photoId)
+    {
+        // 既にいいね！しているかの確認
+        $exist = $this->is_like($photoId);
+        
+        if ($exist) {
+            // 既にいいね！なら何もしない
+            return false;
+        } else {
+            // いいね！していなければ、いいね！する
+            $this->likes()->attach($photoId);
+            return true;
+        }
+    }
+    
+    public function unlike($photoId)
+    {
+        // 既にいいね！しているかの確認
+        $exist = $this->is_like($photoId);
+        
+        if ($exist) {
+            // 既にいいね！ならお気に入りを外す
+            $this->likes()->detach($photoId);
+            return true;
+        } else {
+            // いいね！していなければ、何もしない
+            return false;
+        }
+    }
+    
+    public function is_like($photoId)
+    {
+        return $this->likes()->where('photo_id', $photoId)->exists();
+    }
 }
 

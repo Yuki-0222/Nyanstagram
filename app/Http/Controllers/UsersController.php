@@ -71,6 +71,14 @@ class UsersController extends Controller
         ]);
     }
     
+    public function destroy($id)
+    {
+        $message = User::find($id);
+        $message->delete();
+
+        return redirect('/');
+    }
+    
     public function followings($id)
     {
         $user = User::find($id);
@@ -99,5 +107,20 @@ class UsersController extends Controller
         $data += $this->counts($user);
 
         return view('users.followers', $data);
+    }
+    
+    public function likes($id)
+    {
+        $user = User::find($id);
+        $likes = $user->likes()->orderBy('created_at', 'desc')->paginate(12);
+        
+        $data = [
+            'user' => $user,
+            'photos' => $photos,
+        ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.likes', $data);
     }
 }

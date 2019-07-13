@@ -36,6 +36,10 @@
                     {!! Form::submit('プロフィールを更新', ['class' => 'btn btn-dark btn-block']) !!}
                 
                 {!! Form::close() !!}
+                
+                {!! Form::model($user, ['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
+                    {!! Form::submit('退会をする', ['class' => 'btn btn-danger']) !!}
+                {!! Form::close() !!}
             </aside>
         </div>
     </div>
