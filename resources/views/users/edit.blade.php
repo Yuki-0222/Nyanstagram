@@ -38,7 +38,7 @@
                 {!! Form::close() !!}
                 
                 {!! Form::model($user, ['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
-                    {!! Form::submit('退会をする', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::submit('退会をする', ['class' => 'btn btn-danger btn-sm mt-4']) !!}
                 {!! Form::close() !!}
             </aside>
         </div>

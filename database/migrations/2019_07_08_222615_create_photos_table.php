@@ -17,11 +17,11 @@ class CreatePhotosTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned()->index();
-            $table->string('comment');
+            $table->string('description');
             $table->string('image');
             
              // 外部キー制約
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

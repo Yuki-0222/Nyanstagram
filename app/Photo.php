@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
-    protected $fillable = ['comment', 'user_id', 'image'];
+    protected $fillable = ['description', 'user_id', 'image'];
 
     public function user()
     {
@@ -16,5 +16,10 @@ class Photo extends Model
     public function like_users()
     {
         return $this->belongsToMany(User::class, 'likes', 'photo_id', 'user_id');
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

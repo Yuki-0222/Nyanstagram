@@ -15,11 +15,13 @@ class Controller extends BaseController
         $count_photos = $user->photos()->count();
         $count_followings = $user->followings()->count();
         $count_followers = $user->followers()->count();
+        $count_likes = $user->likes()->count();
 
         return [
             'count_photos' => $count_photos,
             'count_followings' => $count_followings,
             'count_followers' => $count_followers,
+            'count_likes' => $count_likes
         ];
     }
 }

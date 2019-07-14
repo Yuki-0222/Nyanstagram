@@ -7,13 +7,17 @@
 }
 
 .background_after_login {
-    background-color: #fffafa;
+    background-color: #FBEFFB;
     background-size: cover;
 }
 
 .description {
     color: #ffffff;
     padding-top: 50px;
+}
+
+.bg-w {
+    background-color: white;
 }
 
 
@@ -26,13 +30,12 @@
     border-radius: 0;
 }
 
-.center {
-    margin-top: 50%;
+.nav_font {
+    font-size: 20px;
 }
 
-.avater {
-    height: 50px;
-    Width: 50px;
+.center {
+    margin-top: 50%;
 }
 
 .icon-div {

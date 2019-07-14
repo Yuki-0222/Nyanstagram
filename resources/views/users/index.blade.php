@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('users.users', ['users' => $users])
+    <div class="container pt-4">
+        @include('users.users', ['users' => $users])
+    </div>
 @endsection

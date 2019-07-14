@@ -61,14 +61,8 @@ class UsersController extends Controller
             $user->user_image = str_replace('public/', '', $filePath);
         }
         $user->save();
-        
-        // ユーザーページに戻る際のphotos情報を取得
-        $photos = $user->photos()->orderBy('created_at', 'desc')->paginate(12);
-
-        return view('users.show', [
-            'user' => $user,
-            'photos' => $photos,
-        ]);
+    
+        return redirect('/');
     }
     
     public function destroy($id)
@@ -116,10 +110,8 @@ class UsersController extends Controller
         
         $data = [
             'user' => $user,
-            'photos' => $photos,
+            'photos' => $likes,
         ];
-        
-        $data += $this->counts($user);
         
         return view('users.likes', $data);
     }

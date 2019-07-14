@@ -20,12 +20,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
+        Route::get('likes', 'UsersController@likes')->name('users.likes');
     });
     
     Route::group(['prefix' => 'photos/{id}'], function () {
-        Route::post('favorite', 'LikesController@store')->name('likes.like');
-        Route::delete('unfavorite', 'LikesController@destroy')->name('likes.unlike');
+        Route::post('like', 'LikesController@store')->name('likes.like');
+        Route::delete('unlike', 'LikesController@destroy')->name('likes.unlike');
+        Route::resource('comments', 'CommentsController', ['only' => ['store']]);
     });
     
-    Route::resource('photos', 'PhotosController', ['only' => ['index', 'store', 'destroy', 'create']]);
+    Route::resource('photos', 'PhotosController', ['only' => ['index', 'store', 'destroy', 'create', 'show']]);
 });

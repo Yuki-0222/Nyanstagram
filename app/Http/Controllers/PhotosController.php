@@ -8,7 +8,6 @@ use App\Photo;
 class PhotosController extends Controller
 {
 
-
     public function index()
     {
         $data = [];
@@ -29,7 +28,10 @@ class PhotosController extends Controller
     
     public function show($id)
     {
-       // $user = Photo::find($id);
+       $photo = Photo::find($id);
+       $comments = $photo->comments;
+       
+       return view('photos.photo_info', ['photo' => $photo, 'comments' => $comments]);
     }
     
     public function create()
@@ -43,7 +45,7 @@ class PhotosController extends Controller
     {
         // バリデーション↓↓
         $this->validate($request, [
-            'comment' => 'required|max:50',
+            'description' => 'required|max:50',
             'image' => 'required|file|image',
         ]);
     
@@ -52,7 +54,7 @@ class PhotosController extends Controller
         $filePath = $request->file('image')->store('public/posts');
         
         $request->user()->photos()->create([
-            'comment' => $request->comment,
+            'description' => $request->description,
             'image' => str_replace('public/', '', $filePath),
         ]);
         
@@ -78,7 +80,11 @@ class PhotosController extends Controller
         if (\Auth::id() === $photo->user_id) {
             $photo->delete();
         }
+        
+        $id = \Auth::id();
+        $user = \Auth::user();
+        $photos = $user->photos;
 
-        return back();
+        return view("users.show", ['id' => $id, 'user' => $user, 'photos' => $photos]);
     }
 }

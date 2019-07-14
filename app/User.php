@@ -22,6 +22,16 @@ class User extends Authenticatable
         return $this->hasMany(Photo::class);
     }
     
+    // public function comments()
+    // {
+    //     return $this->belongsToMany(Photo::class, 'comments', 'user_id', 'photo_id');
+    // }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
     public function followings()
     {
         // 第1引数：Modelクラス、第2引数：中間テーブル、第3引数：中間テーブルの自分のID、第4引数：中間テーブルの関係先のID
