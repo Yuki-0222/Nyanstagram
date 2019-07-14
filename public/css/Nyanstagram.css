@@ -1,7 +1,7 @@
 .background_before_login {
     position: relative;
     height: 100vh;
-    background: url(../images/top.jpg) no-repeat center center;
+    background: url(/images/top.jpg) no-repeat center center;
     background-size: cover;
     margin-bottom: 0;
 }

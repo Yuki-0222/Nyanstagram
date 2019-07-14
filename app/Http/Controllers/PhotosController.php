@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Photo;
+use Storage;
 
 class PhotosController extends Controller
 {
@@ -43,19 +44,24 @@ class PhotosController extends Controller
     
     public function store(Request $request)
     {
-        // バリデーション↓↓
+        // バリデーション
         $this->validate($request, [
             'description' => 'required|max:50',
             'image' => 'required|file|image',
         ]);
     
-        // データの受け取り処理↓↓
-        //dd($request->file('image')); // ファイル受け取り確認
-        $filePath = $request->file('image')->store('public/posts');
+        // s3アップロード開始
+        $image = $request->file('image');
         
+        // バケットの`nyanstagram`フォルダへアップロード
+        $path = Storage::disk('s3')->putFile('nyanstagram', $image, 'public');
+        
+        // ファイルパスから参照するURLを生成する
+        $url = Storage::disk('s3')->url($path);
+
         $request->user()->photos()->create([
             'description' => $request->description,
-            'image' => str_replace('public/', '', $filePath),
+            'image' => $url,
         ]);
         
         // topへ戻る際のphotos受け取り処理↓↓

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User; // 追加
-use Illuminate\Support\Facades\Storage; // 追加
+use App\User;
+use Storage;
 
 class UsersController extends Controller
 {
@@ -52,13 +52,22 @@ class UsersController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->profile = $request->profile;
-        //dd($request->file('user_image')); // 確認する
         
-        // 画像ファイルを保存
-        $file = $request->file('user_image');
-        if ($file) {
-            $filePath = $file->store('public/icons');
-            $user->user_image = str_replace('public/', '', $filePath);
+        
+        // 画像ファイルの有無を確認
+        $user_image = $request->file('user_image');
+        
+        if ($user_image) {
+            
+            // バケットの`nyanstagram`フォルダへアップロード
+            $path = Storage::disk('s3')->putFile('nyanstagram', $user_image, 'public');
+            
+            // ファイルパスから参照するURLを生成する
+            $url = Storage::disk('s3')->url($path);
+            
+            // user_imageカラムに、画像のURLを保存
+            $user->user_image = $url;
+            
         }
         $user->save();
     

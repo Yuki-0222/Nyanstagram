@@ -13,7 +13,7 @@
                     <h5 class="m-0 pt-1">{{ $photo->user->name }}</h5>
                 </div>
             </li>
-            <img class="img-fluid pb-2" src="/storage/{{$photo->image}}" alt="">
+            <img class="img-fluid pb-2" src="{{ $photo->image }}" alt="">
             <h6 class="p-2 mb-0">投稿日　{{ $photo->created_at->format('Y年m月d日 H時i分') }}</h6>
             <div class="btn-group pl-2">
                 @if (Auth::user()->is_like($photo->id))

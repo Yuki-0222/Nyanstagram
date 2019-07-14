@@ -13,7 +13,7 @@
                             <p class="mb-0">{{ $photo->user->name }}</p>
                         </div>
                     </li>
-                    <a href="{{ route('photos.show', ['id' => $photo->id]) }}"><img class="img-fluid image-roll" src="/storage/{{$photo->image}}" alt=""></a>
+                    <a href="{{ route('photos.show', ['id' => $photo->id]) }}"><img class="img-fluid image-roll" src="{{ $photo->image }}" alt=""></a>
                     <div class="btn-group pl-2">
                         @if (Auth::user()->is_like($photo->id))
                             {!! Form::open(['route' => ['likes.unlike', $photo->id], 'method' => 'delete']) !!}

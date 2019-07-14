@@ -6,9 +6,9 @@
         <div class="row">
             <aside class="col-md-3 mt-4">
                 @if($user->user_image == null)
-                    <img class="rounded-circle icon-image" src="/storage/no_image.png" alt="">
+                    <img class="rounded-circle img-fluid icon-img" src="/images/no_image.png" alt="">
                 @else
-                    <img class="rounded-circle icon-image" src="/storage/{{$user->user_image}}" alt="">
+                    <img class="rounded-circle img-fluid icon-img" src="{{ $user->user_image }}" alt="">
                 @endif
                 <h6 class="mt-4">現在のプロフィール画像</h4>
             </aside>
