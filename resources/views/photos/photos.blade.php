@@ -6,7 +6,7 @@
                     <li class="media p-2">
                         <div style="width: 30px;">
                             <a href="{{ route('users.show', ['id' => $photo->user->id]) }}">
-                                @include('users.user_icon', ['user' => $photo->user])
+                                @include('users.user_icon_timeline', ['user' => $photo->user])
                             </a>
                         </div>
                         <div class="media-body ml-4">

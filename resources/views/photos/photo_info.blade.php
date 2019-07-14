@@ -6,7 +6,7 @@
             <li class="media p-2" style="background-color: white">
                 <div style="width: 40px;">
                     <a href="{{ route('users.show', ['id' => $photo->user->id]) }}">
-                        @include('users.user_icon', ['user' => $photo->user])
+                        @include('users.user_icon_timeline', ['user' => $photo->user])
                     </a>
                 </div>
                 <div class="media-body ml-4">
@@ -38,7 +38,7 @@
                         <li class="media p-2">
                             <div style="width: 40px;">
                                 <a href="{{ route('users.show', ['id' => $comment->user->id]) }}">
-                                    @include('users.user_icon', ['user' => $comment->user])
+                                    @include('users.user_icon_timeline', ['user' => $comment->user])
                                 </a>
                             </div>
                             <div class="media-body ml-4">

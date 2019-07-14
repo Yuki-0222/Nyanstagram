@@ -4,15 +4,15 @@
     <div class="container mt-4 mb-4">
         <h2> {{ $user->name }} さんのプロフィールを編集</h2>
         <div class="row">
-            <aside class="col-sm-4 mt-4">
+            <aside class="col-md-3 mt-4">
                 @if($user->user_image == null)
-                    <img class="rounded-circle img-fluid" src="/storage/no_image.png" alt="">
+                    <img class="rounded-circle icon-image" src="/storage/no_image.png" alt="">
                 @else
-                    <img class="rounded-circle img-fluid" src="/storage/{{$user->user_image}}" alt="">
+                    <img class="rounded-circle icon-image" src="/storage/{{$user->user_image}}" alt="">
                 @endif
-                <h6 class="mt-4 mx-auto" style="width: 180px;">現在のプロフィール画像</h4>
+                <h6 class="mt-4">現在のプロフィール画像</h4>
             </aside>
-            <aside class="col-sm-8 mt-4">
+            <aside class="col-sm-9 mt-4">
                 {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put', 'files' => true]) !!}
             
                     <div class="form-group">
