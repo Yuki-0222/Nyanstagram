@@ -3,14 +3,15 @@
         @foreach ($photos as $photo)
             <div class="col-md-4 p-2">
                 <div class="bg-w rounded">
-                    <li class="media p-2">
-                        <div style="width: 30px;">
+                    <a href="{{ route('users.show', ['id' => $photo->user->id]) }}">
+                        <li class="media p-2">
+                            <div style="width: 30px;">
                             <a href="{{ route('users.show', ['id' => $photo->user->id]) }}">
                                 @include('users.user_icon_timeline', ['user' => $photo->user])
                             </a>
                         </div>
                         <div class="media-body ml-4">
-                            <p class="mb-0">{{ $photo->user->name }}</p>
+                            <a href="{{ route('users.show', ['id' => $photo->user->id]) }}" class="text-dark" style="text-decoration:none;">{{ $photo->user->name }}</a>
                         </div>
                     </li>
                     <a href="{{ route('photos.show', ['id' => $photo->id]) }}"><img class="img-fluid image-roll" src="{{ $photo->image }}" alt=""></a>

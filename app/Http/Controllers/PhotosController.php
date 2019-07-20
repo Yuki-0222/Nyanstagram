@@ -82,15 +82,12 @@ class PhotosController extends Controller
     public function destroy($id)
     {
         $photo = \App\Photo::find($id);
+        $id = \Auth::id();
 
-        if (\Auth::id() === $photo->user_id) {
+        if ($id === $photo->user_id) {
             $photo->delete();
         }
-        
-        $id = \Auth::id();
-        $user = \Auth::user();
-        $photos = $user->photos;
-
-        return view("users.show", ['id' => $id, 'user' => $user, 'photos' => $photos]);
+   
+        return redirect()->route('users.show', ['id' => $id]);
     }
 }

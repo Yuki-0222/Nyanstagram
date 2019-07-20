@@ -10,7 +10,7 @@
                     </a>
                 </div>
                 <div class="media-body ml-4">
-                    <h5 class="m-0 pt-1">{{ $photo->user->name }}</h5>
+                    <a href="{{ route('users.show', ['id' => $photo->user->id]) }}" class="text-dark" style="text-decoration:none;">{{ $photo->user->name }}</a>
                 </div>
             </li>
             <img class="img-fluid pb-2" src="{{ $photo->image }}" alt="">
@@ -27,7 +27,7 @@
                 @endif
                 <span>「いいね！」 {{ $photo->like_users()->count() }}件</span>
             </div>
-            <h5 class="pl-2 pt-4 pb-4">{{ $photo->description }}</h5>
+            <p class="pl-2 pt-4 pb-4">{{ $photo->description }}</p>
             <h6 class="pl-2">コメント数　{{ $photo->comments->count() }}件</h6>
             <hr class="m-0">
             <div>
