@@ -11,7 +11,7 @@
                 <div class="collapse navbar-collapse" id="nav-bar">
                     <ul class="navbar-nav mr-auto"></ul>
                     <ul class="navbar-nav">
-                        <li class="nav-item nav_font"><a href="{{ route('photos.create')}}" class="nav-link"><i class="fas fa-file-import"></i> 投稿する</a></li>
+                        <li class="nav-item nav_font"><a href="{{ route('photos.create')}}" class="nav-link">投稿する</a></li>
                         <li class="nav-item dropdown nav_font">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">メニュー</a>
                             <ul class="dropdown-menu dropdown-menu-right">

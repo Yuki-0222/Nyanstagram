@@ -9,6 +9,7 @@
                 </div>
                 <div class="col-md-9">
                     @include('users.user_info', ['user' => $user])
+                    
                     {!! link_to_route('users.show', '自分のプロフィールを見る', ['id' => $user->id], ['class' => 'btn btn-dark mt-4 btn-block']) !!}
                 </div>
             </div>

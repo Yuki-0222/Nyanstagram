@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pt-4">
-        <div class="bg-w rounded m-4">
+    <div class="container mb-4">
+        <div class="bg-w mt-4">
             <li class="media p-2" style="background-color: white">
                 <div style="width: 40px;">
                     <a href="{{ route('users.show', ['id' => $photo->user->id]) }}">
@@ -15,6 +15,7 @@
             </li>
             <img class="img-fluid pb-2" src="{{ $photo->image }}" alt="">
             <h6 class="p-2 mb-0">投稿日　{{ $photo->created_at->format('Y年m月d日 H時i分') }}</h6>
+            <p class="p-2 m-0">{{ $photo->description }}</p>
             <div class="btn-group pl-2">
                 @if (Auth::user()->is_like($photo->id))
                     {!! Form::open(['route' => ['likes.unlike', $photo->id], 'method' => 'delete']) !!}
@@ -26,9 +27,8 @@
                     {!! Form::close() !!}
                 @endif
                 <span>「いいね！」 {{ $photo->like_users()->count() }}件</span>
+                <span class="pl-2">「コメント」 {{ $photo->comments->count() }}件</span>
             </div>
-            <p class="pl-2 pt-4 pb-4">{{ $photo->description }}</p>
-            <h6 class="pl-2">コメント数　{{ $photo->comments->count() }}件</h6>
             <hr class="m-0">
             <div>
                 @if ($comments->count() > 0)
@@ -61,9 +61,31 @@
             </div>
         </div>
         @if (Auth::id() == $photo->user_id)
-            {!! Form::model($photo, ['route' => ['photos.destroy', $photo->id], 'method' => 'delete']) !!}
-                {!! Form::submit('投稿を削除する', ['class' => 'btn btn-danger btn-sm ml-4 mb-4']) !!}
-            {!! Form::close() !!}
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+                投稿を削除する
+            </button>
+            
         @endif
     </div>
+
+    {{-- モーダルの中身 --}}
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">本当にこの投稿を削除しますか？</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    {!! Form::model($photo, ['route' => ['photos.destroy', $photo->id], 'method' => 'delete']) !!}
+                        {!! Form::submit('削除する', ['class' => 'btn btn-danger btn-sm']) !!}
+                    {!! Form::close() !!}
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">閉じる</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- モーダル終了 --}}
 @endsection
