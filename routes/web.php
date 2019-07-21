@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('like', 'LikesController@store')->name('likes.like');
         Route::delete('unlike', 'LikesController@destroy')->name('likes.unlike');
         Route::resource('comments', 'CommentsController', ['only' => ['store']]);
+        Route::get('like_users', 'PhotosController@like_users')->name('photos.like_users');
     });
     
     Route::resource('photos', 'PhotosController', ['only' => ['index', 'store', 'destroy', 'create', 'show']]);

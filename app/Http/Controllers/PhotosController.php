@@ -82,12 +82,24 @@ class PhotosController extends Controller
     public function destroy($id)
     {
         $photo = \App\Photo::find($id);
-        $id = \Auth::id();
 
-        if ($id === $photo->user_id) {
+        if (\Auth::id() === $photo->user_id) {
             $photo->delete();
         }
    
         return redirect()->route('users.show', ['id' => $id]);
+    }
+    
+    public function like_users($id) {
+        $data = [];
+        $photo = Photo::find($id);
+        $like_users = $photo->like_users()->paginate(10);
+        
+        $data = [
+            'photo' => $photo,
+            'users' => $like_users,
+            ];
+        
+        return view('photos.like_users', $data);
     }
 }

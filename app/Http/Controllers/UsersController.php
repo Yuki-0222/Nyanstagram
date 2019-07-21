@@ -36,15 +36,21 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         
-        return view('users.edit', [
-            'user' => $user,
-        ]);
+        if (\Auth::id() === $user->id) {
+            return view('users.edit', [
+                'user' => $user,
+            ]);
+        }
+        
+        else {
+            return redirect('/');
+        }
     }
     
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'profile' => 'required|max:191',
+            'profile' => 'max:50',
             'user_image' => 'file|image|mimes:jpeg,png,jpg',
         ]);
         
@@ -53,33 +59,46 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->profile = $request->profile;
         
-        
-        // 画像ファイルの有無を確認
-        $user_image = $request->file('user_image');
-        
-        if ($user_image) {
+        if (\Auth::id() === $user->id) {
+            // 画像ファイルの有無を確認
+            $user_image = $request->file('user_image');
             
-            // バケットの`nyanstagram`フォルダへアップロード
-            $path = Storage::disk('s3')->putFile('nyanstagram', $user_image, 'public');
+            if ($user_image) {
+                
+                // バケットの`nyanstagram`フォルダへアップロード
+                $path = Storage::disk('s3')->putFile('nyanstagram', $user_image, 'public');
+                
+                // ファイルパスから参照するURLを生成する
+                $url = Storage::disk('s3')->url($path);
+                
+                // user_imageカラムに、画像のURLを保存
+                $user->user_image = $url;
+                
+            }
+         
+            $user->save();
             
-            // ファイルパスから参照するURLを生成する
-            $url = Storage::disk('s3')->url($path);
-            
-            // user_imageカラムに、画像のURLを保存
-            $user->user_image = $url;
-            
+            return redirect('/');
         }
-        $user->save();
-    
-        return redirect('/');
+        
+        else {
+            return redirect('/');
+        }
     }
     
     public function destroy($id)
     {
-        $message = User::find($id);
-        $message->delete();
-
-        return redirect('/');
+        $user = User::find($id);
+        
+        if (\Auth::id() === $user->id) {
+            $user->delete();
+            
+            return redirect('/');
+        }
+        
+        else {
+            return redirect('/');
+        }
     }
     
     public function followings($id)
