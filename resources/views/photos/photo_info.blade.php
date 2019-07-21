@@ -26,7 +26,12 @@
                         {!! Form::button('<i class="fas fa-heart"></i>', ['class' => "btn btn-link text-secondary p-0", 'type' => 'submit']) !!}
                     {!! Form::close() !!}
                 @endif
-                <span>「いいね！」 {{ $photo->like_users()->count() }}件</span>
+                
+                @if ($photo->like_users()->count() > 0)
+                    <a href="{{ route('photos.like_users', ['id' => $photo->id]) }}" class="text-dark" style="text-decoration:none;">「いいね！」 {{ $photo->like_users()->count() }}件</a>
+                @else
+                    <span>「いいね！」 {{ $photo->like_users()->count() }}件</span>
+                @endif    
                 <span class="pl-2">「コメント」 {{ $photo->comments->count() }}件</span>
             </div>
             <hr class="m-0">
