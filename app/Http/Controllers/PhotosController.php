@@ -87,7 +87,8 @@ class PhotosController extends Controller
             $photo->delete();
         }
    
-        return redirect()->route('users.show', ['id' => $id]);
+        return redirect()->route('users.show', ['id' => \Auth::id()]);
+
     }
     
     public function like_users($id) {
